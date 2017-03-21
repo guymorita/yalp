@@ -14,13 +14,29 @@ import { fetchTokenIfNeeded } from '../actions/auth'
 import { fetchReviewsIfNeeded } from '../actions/reviews'
 
 class Main extends Component {
+  leftButtonConfig = {
+    title: 'Filter',
+    tintColor: 'black',
+    handler: () => this._onFilterPress(),
+  }
+
   rightButtonConfig = {
-    title: 'Next',
-    handler: () => console.log('hi'),
+    title: 'Map',
+    tintColor: 'black',
+    handler: () => this._onMapPress(),
   }
 
   titleConfig = {
     title: 'Yalp',
+    style: styles.title
+  }
+
+  _onFilterPress() {
+    console.log('filter pressed')
+  }
+
+  _onMapPress() {
+    console.log('map pressed')
   }
 
   componentWillMount() {
@@ -42,6 +58,7 @@ class Main extends Component {
           style={styles.navbar}
           containerStyle={styles.navbar}
           title={this.titleConfig}
+          leftButton={this.leftButtonConfig}
           rightButton={this.rightButtonConfig}
         />
         <View>
@@ -63,8 +80,12 @@ class Main extends Component {
 }
 const styles = StyleSheet.create({
   navbar: {
-    backgroundColor: '#5ECC9C'
-  }
+    backgroundColor: '#5ECC9C',
+  },
+  title: {
+    fontFamily: 'Avenir-Book',
+    fontWeight: 'bold'
+  },
 })
 
 const mapStateToProps = (state) => {
