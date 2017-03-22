@@ -10,7 +10,6 @@ import {
 export default class ReviewListCell extends Component {
   render() {
     const { rowData } = this.props
-    console.log('rowData', rowData)
     const { categories, id, image_url, location, name, price, rating, review_count } = rowData
     const { address1, city} = location
     const tags = categories.map((cat) => {return cat.title})
