@@ -5,16 +5,26 @@ import {
   Text,
   View
 } from 'react-native'
+import { connect } from 'react-redux'
 
 import ReviewListCell from './ReviewListCell'
 
-export default class ReviewList extends Component {
+class ReviewList extends Component {
   constructor() {
     super()
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     this.state = {
-      dataSource: ds.cloneWithRows(['row 1', 'row 2']),
+      dataSource: ds.cloneWithRows([]),
+      ds
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { lastReviews } = nextProps
+    const { businesses } = lastReviews
+    this.setState({
+      dataSource: this.state.ds.cloneWithRows(businesses),
+    })
   }
 
   render() {
@@ -22,9 +32,19 @@ export default class ReviewList extends Component {
       <ListView
         dataSource={this.state.dataSource}
         renderRow={(rowData) =>
-          <ReviewListCell rowData={rowData} />
+          <ReviewListCell rowData={rowData.name} />
         }
       />
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  const { reviews } = state
+
+  return {
+    lastReviews: reviews[reviews.length -1]
+  }
+}
+
+export default connect(mapStateToProps)(ReviewList)

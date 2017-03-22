@@ -39,7 +39,6 @@ function fetchToken(state) {
         return response.json()
       })
       .then(json => {
-        console.log('json', json)
         return dispatch(receiveToken(json))
       })
   }

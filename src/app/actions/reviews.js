@@ -10,9 +10,10 @@ function requestReviews() {
   }
 }
 
-function receiveReviews() {
+function receiveReviews(json) {
   return {
-    type: RECEIVE_REVIEWS
+    type: RECEIVE_REVIEWS,
+    json
   }
 }
 
