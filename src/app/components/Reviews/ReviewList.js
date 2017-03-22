@@ -32,8 +32,9 @@ class ReviewList extends Component {
       <ListView
         dataSource={this.state.dataSource}
         renderRow={(rowData) =>
-          <ReviewListCell rowData={rowData.name} />
+          <ReviewListCell rowData={rowData} />
         }
+        enableEmptySections={true}
       />
     );
   }

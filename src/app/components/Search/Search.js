@@ -76,8 +76,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#5ECC9C'
   },
   bottomRow: {
-    flexDirection: 'row',
-    alignItems: 'center'
+    flexDirection: 'row'
   },
   textInput: {
     height: 40,
@@ -87,6 +86,7 @@ const styles = StyleSheet.create({
     borderRadius: 8
   },
   locationInput: {
+    marginTop: 0,
     flex: 1
   },
   searchButton: {
