@@ -5,6 +5,7 @@ import {
 } from 'react-native'
 
 import Main from './containers/Main'
+import Map from './containers/Map'
 
 export default class App extends Component {
   render() {
@@ -39,7 +40,9 @@ export default class App extends Component {
   renderScene(route, navigator) {
     switch (route.title) {
       case 'Main':
-        return (<Main navigator={navigator} />);
+        return (<Main navigator={navigator} />)
+      case 'Map':
+        return (<Map navigator={navigator} />)
     }
   }
 }

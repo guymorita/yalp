@@ -36,7 +36,10 @@ class Main extends Component {
   }
 
   _onMapPress() {
-    console.log('map pressed')
+    const { navigator } = this.props
+    navigator.push({
+      title: 'Map'
+    })
   }
 
   componentWillMount() {
