@@ -42,7 +42,6 @@ function fetchReviews(state) {
         return response.json()
       })
       .then(json => {
-        console.log('json', json)
         return dispatch(receiveReviews(json))
       })
   }

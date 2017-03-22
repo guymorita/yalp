@@ -2,7 +2,6 @@
 import React, { Component } from 'react'
 import {
   StyleSheet,
-  Text,
   View
 } from 'react-native'
 import { connect } from 'react-redux'
@@ -10,6 +9,7 @@ import NavigationBar from 'react-native-navbar'
 import _ from 'lodash'
 
 import ReviewList from '../components/Reviews/ReviewList'
+import Search from '../components/Search/Search'
 import { fetchTokenIfNeeded } from '../actions/auth'
 import { fetchReviewsIfNeeded } from '../actions/reviews'
 
@@ -27,7 +27,7 @@ class Main extends Component {
   }
 
   titleConfig = {
-    title: 'Yalp',
+    title: 'Phở ở đâu',
     style: styles.title
   }
 
@@ -61,19 +61,8 @@ class Main extends Component {
           leftButton={this.leftButtonConfig}
           rightButton={this.rightButtonConfig}
         />
-        <View>
-          <Text>
-            Term Bar
-          </Text>
-        </View>
-        <View>
-          <Text>
-            Location Bar
-          </Text>
-        </View>
-        <View>
-          <ReviewList />
-        </View>
+        <Search />
+        <ReviewList />
       </View>
     );
   }
@@ -85,7 +74,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'Avenir-Book',
     fontWeight: 'bold'
-  },
+  }
 })
 
 const mapStateToProps = (state) => {
