@@ -4,6 +4,11 @@ import {
 } from '../actions/search'
 
 const initialState = [
+  {
+    search: 'pho',
+    location: 'san francisco',
+    date: Date.now()
+  }
 ]
 
 export default function search(state = initialState, action) {

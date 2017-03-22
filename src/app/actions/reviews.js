@@ -21,9 +21,10 @@ function fetchReviews(state) {
     dispatch(requestReviews())
     const access_token = state.auth.access_token
     const bearer = `Bearer ${access_token}`
+    const { search, location } = state.search[state.search.length -1]
     const params = {
-      term: 'pizza',
-      location: 'san francisco'
+      term: search,
+      location: location
     }
 
     const stringParams = qs.stringify(params)
