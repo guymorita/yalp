@@ -10,11 +10,15 @@ import { connect } from 'react-redux'
 import ReviewListCell from './ReviewListCell'
 
 class ReviewList extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+
+    const { lastReviews } = props
+    const reviews = lastReviews && lastReviews.businesses || []
+
     this.state = {
-      dataSource: ds.cloneWithRows([]),
+      dataSource: ds.cloneWithRows(reviews),
       ds
     }
   }
@@ -22,6 +26,7 @@ class ReviewList extends Component {
   componentWillReceiveProps(nextProps) {
     const { lastReviews } = nextProps
     const { businesses } = lastReviews
+
     this.setState({
       dataSource: this.state.ds.cloneWithRows(businesses),
     })

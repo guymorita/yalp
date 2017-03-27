@@ -6,6 +6,7 @@ import {
 
 import Main from './containers/Main'
 import Map from './containers/Map'
+import Login from './containers/Login'
 
 export default class App extends Component {
   render() {
@@ -26,11 +27,15 @@ export default class App extends Component {
         title: 'Map',
         index: 3,
       },
+      {
+        title: 'Login',
+        index: 4
+      }
     ]
 
     return (
       <Navigator
-        initialRoute={routes[0]}
+        initialRoute={routes[4]}
         initialRouteStack={routes}
         renderScene={this.renderScene.bind(this)}
       />
@@ -43,6 +48,8 @@ export default class App extends Component {
         return (<Main navigator={navigator} />)
       case 'Map':
         return (<Map navigator={navigator} />)
+      case 'Login':
+        return (<Login navigator={navigator} />)
     }
   }
 }
