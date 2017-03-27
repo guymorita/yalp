@@ -6,7 +6,6 @@ import {
   Text,
   View
 } from 'react-native'
-import NavigationBar from 'react-native-navbar'
 
 export default class Login extends Component {
   _onLoginPress() {

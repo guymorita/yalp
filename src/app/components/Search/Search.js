@@ -9,6 +9,7 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 
+import { resetFilters } from '../../actions/filters'
 import { searchNew } from '../../actions/search'
 
 class Search extends Component {
@@ -32,6 +33,7 @@ class Search extends Component {
   _onSearchPress() {
     const { dispatch } = this.props
     const { location, search} = this.state
+    dispatch(resetFilters())
     dispatch(searchNew(search, location))
   }
 

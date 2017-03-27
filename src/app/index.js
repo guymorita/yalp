@@ -7,6 +7,7 @@ import {
 import Main from './containers/Main'
 import Map from './containers/Map'
 import Login from './containers/Login'
+import Filter from './containers/Filter'
 
 export default class App extends Component {
   render() {
@@ -50,6 +51,8 @@ export default class App extends Component {
         return (<Map navigator={navigator} />)
       case 'Login':
         return (<Login navigator={navigator} />)
+      case 'Filter':
+        return (<Filter navigator={navigator} />)
     }
   }
 }

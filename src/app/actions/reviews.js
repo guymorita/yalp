@@ -23,10 +23,22 @@ function fetchReviews(state) {
     const access_token = state.auth.access_token
     const bearer = `Bearer ${access_token}`
     const { search, location } = state.search[state.search.length -1]
+    const { filters } = state
+    const { categories } = filters
+    const categoriesToFilter = categories.filter((category) => {
+      return category.filter === true
+    })
     const params = {
       term: search,
       location: location
     }
+
+    if (categoriesToFilter.length) {
+      const categoryNames = categoriesToFilter.map((category) => { return category.name.toLowerCase() })
+      params.categories = categoryNames.join(',')
+    }
+
+    console.log('params', params)
 
     const stringParams = qs.stringify(params)
     const url = 'https://api.yelp.com/v3/businesses/search'

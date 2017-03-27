@@ -2,61 +2,51 @@
 import React, { Component } from 'react'
 import {
   StyleSheet,
+  Switch,
+  Text,
   View
 } from 'react-native'
 import { connect } from 'react-redux'
-import NavigationBar from 'react-native-navbar'
 import _ from 'lodash'
-
-import ReviewList from '../components/Reviews/ReviewList'
-import Search from '../components/Search/Search'
-import { fetchTokenIfNeeded } from '../actions/auth'
+import NavigationBar from 'react-native-navbar'
+import CategoryList from '../components/Filters/CategoryList'
 import { fetchReviewsIfNeeded } from '../actions/reviews'
 
-class Main extends Component {
+
+class Filter extends Component {
   leftButtonConfig = {
-    title: 'Filter',
+    title: 'Back',
     tintColor: 'black',
-    handler: () => this._onFilterPress(),
+    handler: () => this._onBackPress(),
   }
 
   rightButtonConfig = {
-    title: 'Map',
+    title: 'Save',
     tintColor: 'black',
-    handler: () => this._onMapPress(),
+    handler: () => this._onSavePress(),
   }
 
   titleConfig = {
-    title: 'Phở ở đâu',
+    title: 'Filter',
     style: styles.title
   }
 
-  _onFilterPress() {
+  _onBackPress() {
     const { navigator } = this.props
-    navigator.push({
-      title: 'Filter'
-    })
-
+    navigator.pop()
   }
 
-  _onMapPress() {
-    const { navigator } = this.props
-    navigator.push({
-      title: 'Map'
-    })
-  }
-
-  componentWillMount() {
-    const { dispatch } = this.props
-    dispatch(fetchTokenIfNeeded())
-    console.log('mounting')
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const { auth, dispatch } = nextProps
+  _onSavePress() {
+    const { auth, dispatch, navigator } = this.props
     if (!_.isEmpty(auth)) {
       dispatch(fetchReviewsIfNeeded())
     }
+    navigator.pop()
+  }
+
+  state = {
+    trueSwitchIsOn: true,
+    falseSwitchIsOn: false,
   }
 
   render() {
@@ -69,12 +59,13 @@ class Main extends Component {
           leftButton={this.leftButtonConfig}
           rightButton={this.rightButtonConfig}
         />
-        <Search />
-        <ReviewList />
+        <CategoryList />
       </View>
     );
   }
 }
+
+
 const styles = StyleSheet.create({
   navbar: {
     backgroundColor: '#5ECC9C',
@@ -93,4 +84,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Main)
+export default connect(mapStateToProps)(Filter)
